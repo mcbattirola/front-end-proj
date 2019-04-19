@@ -1,0 +1,53 @@
+.orcamento {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  text-align: center;
+  color: #565656;
+}
+
+.orcamento-titulo {
+  font-weight: bold;
+  line-height: normal;
+}
+
+.orcamento-container {
+  background: #ffffff;
+  border: 1px solid #cbcbcb;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-bottom: 1%;
+  padding-top: 2%;
+}
+
+.orcamento-validade {
+  font-weight: 300;
+  line-height: 22px;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cbcbcb;
+  margin: 1em 0;
+  padding: 0;
+  margin-right: 13.8%;
+  margin-left: 13.8%;
+}
+
+.orcamento-botao {
+  background: #ef7e31;
+  border-radius: 1px;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 21px;
+
+  color: #ffffff;
+}
+
+.active {
+  color: #ef7e31;
+}
