@@ -18,6 +18,8 @@
   border-radius: 3px;
   padding-bottom: 1%;
   padding-top: 2%;
+  width: 326px;
+  height: 305px;
 }
 
 .orcamento-validade {
@@ -50,4 +52,37 @@ hr {
 
 .active {
   color: #ef7e31;
+}
+
+.label {
+  width: 104px;
+  height: 19px;
+}
+
+.label-contratado {
+  background-color: #4983ef;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.stars-icon {
+  background: url(../images/star-grey.png);
+
+  margin-top: 10px;
+  display: block;
+  height: 26px;
+  width: 145px;
+  background-size: contain;
+}
+
+.stars-icon-selected {
+  background: url(../images/star.png);
+
+  margin-top: 10px;
+  display: block;
+  height: 26px;
+  width: 145px;
+  background-size: contain;
 }
