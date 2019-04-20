@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Avatar from "./avatar";
+import Stars from "./stars";
 
 class WorkerDetails extends Component {
   state = {};
@@ -13,8 +14,8 @@ class WorkerDetails extends Component {
           imgTitle={quote.name}
         />
         <div>{quote.name}</div>
-        <div>
-          stars: {quote.stars} ({quote.ratings})
+        <div className="worker-rating">
+          <Stars stars={quote.stars} />
         </div>
         {this.props.detailLevel > 0 ? (
           <React.Fragment>

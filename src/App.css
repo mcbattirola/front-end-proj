@@ -1,3 +1,13 @@
+.order-body {
+  background: rgba(238, 238, 238, 0.5);
+}
+
+nav {
+  background: #ffffff;
+  border: 1px solid #cbcbcb;
+  box-sizing: border-box;
+}
+
 .orcamento {
   font-family: Montserrat;
   font-size: 14px;
@@ -61,14 +71,16 @@ hr {
 
 .label-contratado {
   background-color: #4983ef;
+  color: #ffffff;
 }
 
 .avatar {
   border-radius: 50%;
+  height: 3.5em;
 }
 
 .stars-icon {
-  background: url(../images/star-grey.png);
+  background: url(/images/star-grey.png);
 
   margin-top: 10px;
   display: block;
@@ -78,11 +90,24 @@ hr {
 }
 
 .stars-icon-selected {
-  background: url(../images/star.png);
+  background: url(/images/star.png);
 
   margin-top: 10px;
   display: block;
   height: 26px;
   width: 145px;
   background-size: contain;
+}
+
+.worker-rating {
+  align: center;
+}
+
+.quotes-plus {
+  background: #c4c4c4;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 22px;
 }

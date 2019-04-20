@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
-import OrderList from "./components/orderList";
-import Navbar from "./components/navbar";
+import Order from "./order";
 
-class App extends Component {
+class OrderList extends Component {
   state = {
     pedidos: [
       {
@@ -34,6 +32,54 @@ class App extends Component {
             stars: 2.2,
             ratings: 82,
             servicesDone: 51,
+            hired: false
+          },
+          {
+            id: "9",
+            orderId: "9",
+            name: "Abbigail",
+            avatar:
+              "https://s3.amazonaws.com/uifaces/faces/twitter/victorstuber/128.jpg",
+            price: "637.00",
+            stars: 4,
+            ratings: 17,
+            servicesDone: 59,
+            hired: false
+          },
+          {
+            id: "24",
+            orderId: "9",
+            name: "Tess",
+            avatar:
+              "https://s3.amazonaws.com/uifaces/faces/twitter/aaronkwhite/128.jpg",
+            price: "129.00",
+            stars: 3,
+            ratings: 12,
+            servicesDone: 13,
+            hired: false
+          },
+          {
+            id: "9",
+            orderId: "9",
+            name: "Abbigail",
+            avatar:
+              "https://s3.amazonaws.com/uifaces/faces/twitter/victorstuber/128.jpg",
+            price: "637.00",
+            stars: 4,
+            ratings: 17,
+            servicesDone: 59,
+            hired: false
+          },
+          {
+            id: "24",
+            orderId: "9",
+            name: "Tess",
+            avatar:
+              "https://s3.amazonaws.com/uifaces/faces/twitter/aaronkwhite/128.jpg",
+            price: "129.00",
+            stars: 3,
+            ratings: 12,
+            servicesDone: 13,
             hired: false
           }
         ]
@@ -465,12 +511,21 @@ class App extends Component {
   };
   render() {
     return (
-      <body>
-        <Navbar text="hello" />
-        <OrderList />
-      </body>
+      <div className="order-body">{this.renderPedidos(this.state.pedidos)}</div>
     );
   }
-}
 
-export default App;
+  renderPedidos = pedidos => {
+    if (pedidos.length === 0) {
+      return <p> Você não possui pedidos. </p>;
+    }
+    return (
+      <React.Fragment>
+        {pedidos.map(pedido => (
+          <Order order={pedido} key={pedido.id} />
+        ))}
+      </React.Fragment>
+    );
+  };
+}
+export default OrderList;

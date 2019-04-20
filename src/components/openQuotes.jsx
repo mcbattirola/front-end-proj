@@ -23,7 +23,20 @@ class OpenQuotes extends Component {
 
   renderPhotos = quotes => {
     if (quotes.length > 3) {
-      return "3 FOTOS + ICONE EXTRA";
+      const plusQuotes = quotes.length - 3;
+      return (
+        <React.Fragment>
+          {quotes.slice(0, 3).map(quote => (
+            <Avatar
+              imgSrc={quote.avatar}
+              imgAlt={quote.name}
+              imgTitle={quote.name}
+              key={quote.id}
+            />
+          ))}{" "}
+          <span className="quotes-plus">+ {plusQuotes}</span>
+        </React.Fragment>
+      );
     } else {
       return quotes.map(quote => (
         <Avatar
