@@ -488,6 +488,12 @@ class OrderList extends Component {
     ]
   };
 
+  componentDidMount() {
+    this.setState({
+      filter: this.props.lastFilter
+    });
+  }
+
   render() {
     return (
       <div className="order-body">{this.renderPedidos(this.state.pedidos)}</div>
@@ -498,6 +504,8 @@ class OrderList extends Component {
     this.setState({
       filter: filter
     });
+
+    //send selected filter to app.js so it can reutilize the same on the page back
   };
 
   returnFilteredInfos = pedidos => {
@@ -557,6 +565,7 @@ class OrderList extends Component {
               order={pedido}
               key={pedido.id}
               onSelectOrder={this.props.onSelectOrder}
+              filter={this.state.filter}
             />
           ))}
         </section>

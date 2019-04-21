@@ -7,6 +7,7 @@ import ExtraInforation from "./components/extraInformation";
 
 class App extends Component {
   state = {
+    orderListFilter: "",
     selectedOrder: false,
     pedidos: [
       {
@@ -474,18 +475,23 @@ class App extends Component {
           <OrderDetail
             order={this.state.selectedOrder}
             onSelectOrder={this.handleSelectOrder}
+            filter={this.state.orderListFilter}
           />
         ) : (
-          <OrderList onSelectOrder={this.handleSelectOrder} />
+          <OrderList
+            onSelectOrder={this.handleSelectOrder}
+            lastFilter={this.state.orderListFilter}
+          />
         )}
         <ExtraInforation />
       </React.Fragment>
     );
   }
 
-  handleSelectOrder = order => {
+  handleSelectOrder = (order, filter) => {
     this.setState({
-      selectedOrder: order
+      selectedOrder: order,
+      orderListFilter: filter
     });
   };
 }

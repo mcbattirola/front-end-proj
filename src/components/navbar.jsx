@@ -6,9 +6,7 @@ import React from "react";
 const Navbar = ({ text }) => {
   return (
     <nav className="navbar navbar-light bg-light">
-      <a href="#" className="navbar-brand" href="#">
-        Hello {text}
-      </a>
+      <div className="navbar-brand">Hello {text}</div>
     </nav>
   );
 };
