@@ -34,11 +34,19 @@ class Order extends Component {
         )}
 
         <Button
+          onClick={() => {
+            this.handleButtonClick();
+          }}
           text={order.quotes.length > 0 ? "VER ORÇAMENTOS" : "VER DETALHES"}
         />
       </div>
     );
   }
+
+  handleButtonClick = () => {
+    console.log(this.props);
+    this.props.onSelectOrder(this.props.order);
+  };
 
   renderQuantidadeOrcamentos = order => {
     let texto = "";

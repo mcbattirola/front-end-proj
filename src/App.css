@@ -100,7 +100,7 @@ hr {
 }
 
 .worker-rating {
-  align: center;
+  align-content: center;
 }
 
 .quotes-plus {
@@ -110,4 +110,25 @@ hr {
   font-weight: 300;
   font-size: 14px;
   line-height: 22px;
+}
+
+.extraInfo {
+  height: 180px;
+}
+
+.orderNavigation {
+  background: #ef7e31;
+  border: 1px solid #cbcbcb;
+  box-sizing: border-box;
+  min-height: 50px;
+}
+
+.orderNavigation-text {
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: normal;
+  align-content: center;
+  color: #ffffff;
 }

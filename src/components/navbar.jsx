@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 
 //Stateless Functional Component
 
@@ -6,7 +6,7 @@ import React, { PureComponent } from "react";
 const Navbar = ({ text }) => {
   return (
     <nav className="navbar navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <a href="#" className="navbar-brand" href="#">
         Hello {text}
       </a>
     </nav>

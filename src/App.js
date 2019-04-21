@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
-import OrderList from "./components/orderList";
 import Navbar from "./components/navbar";
+import OrderList from "./views/orderList";
+import OrderDetail from "./views/orderDetail";
+import ExtraInforation from "./components/extraInformation";
 
 class App extends Component {
   state = {
+    selectedOrder: false,
     pedidos: [
       {
         id: "1",
@@ -465,12 +468,26 @@ class App extends Component {
   };
   render() {
     return (
-      <body>
-        <Navbar text="hello" />
-        <OrderList />
-      </body>
+      <React.Fragment>
+        <Navbar text="Navbar" />
+        {this.state.selectedOrder ? (
+          <OrderDetail
+            order={this.state.selectedOrder}
+            onSelectOrder={this.handleSelectOrder}
+          />
+        ) : (
+          <OrderList onSelectOrder={this.handleSelectOrder} />
+        )}
+        <ExtraInforation />
+      </React.Fragment>
     );
   }
+
+  handleSelectOrder = order => {
+    this.setState({
+      selectedOrder: order
+    });
+  };
 }
 
 export default App;

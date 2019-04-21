@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Order from "./order";
+import Order from "../components/order";
 
 class OrderList extends Component {
   state = {
+    filter: "",
     pedidos: [
       {
         id: "1",
@@ -509,21 +510,64 @@ class OrderList extends Component {
       }
     ]
   };
+
   render() {
     return (
       <div className="order-body">{this.renderPedidos(this.state.pedidos)}</div>
     );
   }
 
+  handleFilter = filter => {
+    this.setState({
+      filter: filter
+    });
+  };
+
+  filterPedidos = pedidos => {
+    if (this.state.filter == "") {
+      return pedidos.filter(
+        pedido =>
+          pedido.status === this.state.filter || pedido.status == "contratado"
+      );
+    } else {
+      return pedidos.filter(pedido => pedido.status === this.state.filter);
+    }
+  };
+
   renderPedidos = pedidos => {
-    if (pedidos.length === 0) {
+    if (typeof pedidos === "undefined" || pedidos.length === 0) {
       return <p> Você não possui pedidos. </p>;
     }
+
+    pedidos = this.filterPedidos(pedidos);
+
+    let styleFiltro = {
+      float: "right"
+    };
+
     return (
       <React.Fragment>
-        {pedidos.map(pedido => (
-          <Order order={pedido} key={pedido.id} />
-        ))}
+        <div>
+          <span>Meus Orçamentos</span>
+          <div style={styleFiltro}>
+            <span onClick={() => this.handleFilter("")}>Abertos </span>
+            <span onClick={() => this.handleFilter("finalizado")}>
+              Finalizados{" "}
+            </span>
+            <span onClick={() => this.handleFilter("cancelado")}>
+              Cancelados{" "}
+            </span>
+          </div>
+        </div>
+        <section>
+          {pedidos.map(pedido => (
+            <Order
+              order={pedido}
+              key={pedido.id}
+              onSelectOrder={this.props.onSelectOrder}
+            />
+          ))}
+        </section>
       </React.Fragment>
     );
   };
