@@ -140,3 +140,7 @@ hr {
   align-content: center;
   color: #ffffff;
 }
+
+footer {
+  background: rgba(238, 238, 238, 0.5);
+}

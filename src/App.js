@@ -470,7 +470,9 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar text="Navbar" />
+        <header>
+          <Navbar text="Navbar" />
+        </header>
         {this.state.selectedOrder ? (
           <OrderDetail
             order={this.state.selectedOrder}
@@ -484,6 +486,13 @@ class App extends Component {
           />
         )}
         <ExtraInforation />
+        <footer>
+          <p>Posted by: Hege Refsnes</p>
+          <p>
+            Contact information:{" "}
+            <a href="mailto:someone@example.com">someone@example.com</a>.
+          </p>
+        </footer>
       </React.Fragment>
     );
   }

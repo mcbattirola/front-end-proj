@@ -504,7 +504,6 @@ class OrderList extends Component {
     this.setState({
       filter: filter
     });
-
     //send selected filter to app.js so it can reutilize the same on the page back
   };
 
@@ -545,29 +544,45 @@ class OrderList extends Component {
 
     return (
       <React.Fragment>
-        <div>
-          <span>Meus Orçamentos</span>
-          <div style={styleFiltro}>
-            <span onClick={() => this.handleFilter("")}>
-              Abertos ({filteredInfos.openQuantity}){" "}
-            </span>
-            <span onClick={() => this.handleFilter("finalizado")}>
-              Finalizados({filteredInfos.finishedQuantity})
-            </span>
-            <span onClick={() => this.handleFilter("cancelado")}>
-              Cancelados({filteredInfos.canceledQuantity})
-            </span>
+        <div className="row">
+          <div className="col col-xl-3">
+            <span>Meus Orçamentos</span>
+          </div>
+          <div className="col col-xl-9">
+            <div className="row">
+              <div className="col col-xl-3">
+                <span onClick={() => this.handleFilter("")}>
+                  Abertos ({filteredInfos.openQuantity}){" "}
+                </span>
+              </div>
+              <div className="col col-xl-3">
+                <span onClick={() => this.handleFilter("finalizado")}>
+                  Finalizados({filteredInfos.finishedQuantity})
+                </span>
+              </div>
+              <div className="col col-xl-3">
+                <span onClick={() => this.handleFilter("cancelado")}>
+                  Cancelados({filteredInfos.canceledQuantity})
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-        <section>
-          {filteredInfos.filteredOrders.map(pedido => (
-            <Order
-              order={pedido}
-              key={pedido.id}
-              onSelectOrder={this.props.onSelectOrder}
-              filter={this.state.filter}
-            />
-          ))}
+        <section className="container">
+          <div className="container">
+            <div className="row">
+              {filteredInfos.filteredOrders.map(pedido => (
+                <div className="col col-xl-4">
+                  <Order
+                    order={pedido}
+                    key={pedido.id}
+                    onSelectOrder={this.props.onSelectOrder}
+                    filter={this.state.filter}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
       </React.Fragment>
     );
