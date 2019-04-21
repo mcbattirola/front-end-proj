@@ -21,7 +21,7 @@ class OrderList extends Component {
             stars: 5,
             ratings: 58,
             servicesDone: 85,
-            hired: false
+            hired: true
           },
           {
             id: "16",
@@ -33,54 +33,6 @@ class OrderList extends Component {
             stars: 2.2,
             ratings: 82,
             servicesDone: 51,
-            hired: false
-          },
-          {
-            id: "9",
-            orderId: "9",
-            name: "Abbigail",
-            avatar:
-              "https://s3.amazonaws.com/uifaces/faces/twitter/victorstuber/128.jpg",
-            price: "637.00",
-            stars: 4,
-            ratings: 17,
-            servicesDone: 59,
-            hired: false
-          },
-          {
-            id: "24",
-            orderId: "9",
-            name: "Tess",
-            avatar:
-              "https://s3.amazonaws.com/uifaces/faces/twitter/aaronkwhite/128.jpg",
-            price: "129.00",
-            stars: 3,
-            ratings: 12,
-            servicesDone: 13,
-            hired: false
-          },
-          {
-            id: "9",
-            orderId: "9",
-            name: "Abbigail",
-            avatar:
-              "https://s3.amazonaws.com/uifaces/faces/twitter/victorstuber/128.jpg",
-            price: "637.00",
-            stars: 4,
-            ratings: 17,
-            servicesDone: 59,
-            hired: false
-          },
-          {
-            id: "24",
-            orderId: "9",
-            name: "Tess",
-            avatar:
-              "https://s3.amazonaws.com/uifaces/faces/twitter/aaronkwhite/128.jpg",
-            price: "129.00",
-            stars: 3,
-            ratings: 12,
-            servicesDone: 13,
             hired: false
           }
         ]
@@ -122,7 +74,32 @@ class OrderList extends Component {
         createdAt: "2019-02-07T14:58:07.395Z",
         serviceName: "Diaristas e faxineiras",
         status: "finalizado",
-        quotes: []
+        quotes: [
+          {
+            id: "3",
+            orderId: "3",
+            name: "Conrad",
+            avatar:
+              "https://s3.amazonaws.com/uifaces/faces/twitter/shvelo96/128.jpg",
+            price: "325.00",
+            stars: 2,
+            ratings: 33,
+            servicesDone: 60,
+            hired: true
+          },
+          {
+            id: "18",
+            orderId: "3",
+            name: "Mose",
+            avatar:
+              "https://s3.amazonaws.com/uifaces/faces/twitter/ZacharyZorbas/128.jpg",
+            price: "531.00",
+            stars: 4.9,
+            ratings: 36,
+            servicesDone: 93,
+            hired: false
+          }
+        ]
       },
       {
         id: "4",
@@ -523,15 +500,28 @@ class OrderList extends Component {
     });
   };
 
-  filterPedidos = pedidos => {
-    if (this.state.filter == "") {
-      return pedidos.filter(
-        pedido =>
-          pedido.status === this.state.filter || pedido.status == "contratado"
-      );
+  returnFilteredInfos = pedidos => {
+    let openArr = pedidos.filter(
+      pedido => pedido.status === "" || pedido.status === "contratado"
+    );
+    let canceledArr = pedidos.filter(pedido => pedido.status === "cancelado");
+    let finishedArr = pedidos.filter(pedido => pedido.status === "finalizado");
+
+    let selectedArr;
+    if (this.state.filter === "" || this.state.filter === "contratado") {
+      selectedArr = openArr;
+    } else if (this.state.filter === "cancelado") {
+      selectedArr = canceledArr;
     } else {
-      return pedidos.filter(pedido => pedido.status === this.state.filter);
+      selectedArr = finishedArr;
     }
+
+    return {
+      openQuantity: openArr.length,
+      finishedQuantity: finishedArr.length,
+      canceledQuantity: canceledArr.length,
+      filteredOrders: selectedArr
+    };
   };
 
   renderPedidos = pedidos => {
@@ -539,7 +529,7 @@ class OrderList extends Component {
       return <p> Você não possui pedidos. </p>;
     }
 
-    pedidos = this.filterPedidos(pedidos);
+    const filteredInfos = this.returnFilteredInfos(pedidos);
 
     let styleFiltro = {
       float: "right"
@@ -550,17 +540,19 @@ class OrderList extends Component {
         <div>
           <span>Meus Orçamentos</span>
           <div style={styleFiltro}>
-            <span onClick={() => this.handleFilter("")}>Abertos </span>
+            <span onClick={() => this.handleFilter("")}>
+              Abertos ({filteredInfos.openQuantity}){" "}
+            </span>
             <span onClick={() => this.handleFilter("finalizado")}>
-              Finalizados{" "}
+              Finalizados({filteredInfos.finishedQuantity})
             </span>
             <span onClick={() => this.handleFilter("cancelado")}>
-              Cancelados{" "}
+              Cancelados({filteredInfos.canceledQuantity})
             </span>
           </div>
         </div>
         <section>
-          {pedidos.map(pedido => (
+          {filteredInfos.filteredOrders.map(pedido => (
             <Order
               order={pedido}
               key={pedido.id}

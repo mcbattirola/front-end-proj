@@ -3,8 +3,9 @@ import React from "react";
 //Stateless Functional Component
 
 //props as argument and remove "this." from props
-const Rotulo = () => {
-  return <span className="label label-contratado">Contratado</span>;
+const Rotulo = props => {
+  const labelType = "label label-" + props.label;
+  return <span className={labelType}>{props.label}</span>;
 };
 
 export default Rotulo;

@@ -73,6 +73,14 @@ hr {
   background-color: #4983ef;
   color: #ffffff;
 }
+.label-cancelado {
+  background: #ef4949;
+  color: #ffffff;
+}
+.label-finalizado {
+  background: #59bc5c;
+  color: #ffffff;
+}
 
 .avatar {
   border-radius: 50%;

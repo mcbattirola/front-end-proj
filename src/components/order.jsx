@@ -10,29 +10,11 @@ class Order extends Component {
 
   render() {
     const order = this.props.order;
-    const quotes = this.props.order.quotes;
-    const hired = this.props.order.quotes.some(quote => quote.hired);
 
     return (
       <div className="orcamento orcamento-container">
         <div className="orcamento orcamento-titulo"> {order.serviceName} </div>
-        {hired ? (
-          <React.Fragment>
-            <Rotulo />
-            <WorkerDetails
-              quote={quotes.find(quote => quote.hired)}
-              detailLevel="0"
-            />
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <p>Validade: 5 dias</p>
-            <hr />
-            <OpenQuotes quotes={quotes} key={quotes.id} />
-            {this.renderQuantidadeOrcamentos(order)}
-          </React.Fragment>
-        )}
-
+        {this.renderOrderByStatus(order)}
         <Button
           onClick={() => {
             this.handleButtonClick();
@@ -42,6 +24,54 @@ class Order extends Component {
       </div>
     );
   }
+
+  renderOrderByStatus = order => {
+    const orderStatus = order.status;
+    const quotes = this.props.order.quotes;
+    {
+      switch (orderStatus) {
+        case "": //open order
+          return (
+            <React.Fragment>
+              <p>Validade: 5 dias</p>
+              <hr />
+              <OpenQuotes quotes={quotes} key={quotes.id} />
+              {this.renderQuantidadeOrcamentos(order)}
+            </React.Fragment>
+          );
+        case "contratado":
+          return (
+            <React.Fragment>
+              <Rotulo label="contratado" />
+              <WorkerDetails
+                quote={quotes.find(quote => quote.hired)}
+                detailLevel="0"
+              />
+            </React.Fragment>
+          );
+        case "finalizado":
+          return (
+            <React.Fragment>
+              <Rotulo label="finalizado" />
+              <p>Validade: 5 dias</p>
+              <hr />
+              <OpenQuotes quotes={quotes} key={quotes.id} />
+              {this.renderQuantidadeOrcamentos(order)}
+            </React.Fragment>
+          );
+        case "cancelado":
+          return (
+            <React.Fragment>
+              <Rotulo label="cancelado" />
+              <p>Validade: 5 dias</p>
+              <hr />
+              <OpenQuotes quotes={quotes} key={quotes.id} />
+              {this.renderQuantidadeOrcamentos(order)}
+            </React.Fragment>
+          );
+      }
+    }
+  };
 
   handleButtonClick = () => {
     console.log(this.props);
