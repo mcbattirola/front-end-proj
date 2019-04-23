@@ -7,13 +7,12 @@ const Button = props => {
   return (
     <button
       onClick={() => {
-        props.onClick();
+        props.onClick === undefined ? void 0 : props.onClick();
       }}
-      className="orcamento-botao"
+      className="btn-order"
     >
       {props.text}
     </button>
   );
 };
-
 export default Button;

@@ -1,0 +1,48 @@
+.footer {
+  margin-top: 0;
+  /* margin-bottom: 100px; */
+}
+
+.footer .copyright {
+  border-top: 1px solid #eee;
+  height: 144px;
+}
+@media (min-width: 768px) {
+  .footer .copyright {
+    height: 80px;
+  }
+}
+
+.footer .copyright a,
+.main .footer .copyright span {
+  font: 400 15px Montserrat, arial, sans-serif;
+  font-size: 15px;
+  color: #565656;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.footer .copyright .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+@media only screen and (max-width: 768px) {
+  .footer .copyright .container {
+    padding-top: 23px;
+    display: flex;
+    text-align: center;
+  }
+}
+
+.footer .copyright span {
+  font: 400 15px Montserrat, arial, sans-serif;
+  font-size: 15px;
+  color: #565656;
+  text-decoration: none;
+}
+
+.footer-img {
+  width: 70px;
+}

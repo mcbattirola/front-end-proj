@@ -13,14 +13,18 @@ class Order extends Component {
 
     return (
       <div className="orcamento orcamento-container">
-        <div className="orcamento orcamento-titulo"> {order.serviceName} </div>
+        <div className="orcamento orcamento-titulo">
+          <span>{order.serviceName}</span>
+        </div>
         {this.renderOrderByStatus(order)}
-        <Button
-          onClick={() => {
-            this.handleButtonClick();
-          }}
-          text={order.quotes.length > 0 ? "VER ORÇAMENTOS" : "VER DETALHES"}
-        />
+        <div className="order-buttom-container">
+          <Button
+            onClick={() => {
+              this.handleButtonClick();
+            }}
+            text={order.quotes.length > 0 ? "VER ORÇAMENTOS" : "VER DETALHES"}
+          />
+        </div>
       </div>
     );
   }
@@ -34,16 +38,23 @@ class Order extends Component {
       case "": //open order
         return (
           <React.Fragment>
-            <p>Validade: 5 dias</p>
+            <div className="order-remaining-time">
+              <span>Validade: 5 dias</span>
+            </div>
             <hr />
             <OpenQuotes quotes={quotes} key={quotes.id} />
-            {this.renderQuantidadeOrcamentos(order)}
+            <div className="order-quote-quantity">
+              {this.renderQuantidadeOrcamentos(order)}
+            </div>
           </React.Fragment>
         );
       case "contratado":
         return (
           <React.Fragment>
-            <Rotulo label="contratado" />
+            <div className="order-label-div order-remaining-time">
+              <Rotulo label="contratado" />
+            </div>
+            <hr />
             <WorkerDetails
               quote={quotes.find(quote => quote.hired)}
               detailLevel="0"
@@ -53,21 +64,29 @@ class Order extends Component {
       case "finalizado":
         return (
           <React.Fragment>
-            <Rotulo label="finalizado" />
-            <p>Validade: 5 dias</p>
+            <div className="order-label-div order-remaining-time">
+              <Rotulo label="finalizado" />
+            </div>
+
             <hr />
             <OpenQuotes quotes={quotes} key={quotes.id} />
-            {this.renderQuantidadeOrcamentos(order)}
+            <div className="order-quote-quantity">
+              {this.renderQuantidadeOrcamentos(order)}
+            </div>
           </React.Fragment>
         );
       case "cancelado":
         return (
           <React.Fragment>
-            <Rotulo label="cancelado" />
-            <p>Validade: 5 dias</p>
+            <div className="order-label-div order-remaining-time">
+              <Rotulo label="cancelado" />
+            </div>
+
             <hr />
             <OpenQuotes quotes={quotes} key={quotes.id} />
-            {this.renderQuantidadeOrcamentos(order)}
+            <div className="order-quote-quantity">
+              {this.renderQuantidadeOrcamentos(order)}
+            </div>
           </React.Fragment>
         );
     }

@@ -5,7 +5,11 @@ import React from "react";
 //props as argument and remove "this." from props
 const Rotulo = props => {
   const labelType = "label label-" + props.label;
-  return <span className={labelType}>{props.label}</span>;
+  return (
+    <div className={labelType}>
+      <span>{props.label.toUpperCase()}</span>
+    </div>
+  );
 };
 
 export default Rotulo;

@@ -4,11 +4,43 @@ import Navbar from "./components/navbar";
 import OrderList from "./views/orderList";
 import OrderDetail from "./views/orderDetail";
 import ExtraInforation from "./components/extraInformation";
+import Footer from "./components/footer";
 
 class App extends Component {
   state = {
     orderListFilter: "",
-    selectedOrder: false,
+    selectedOrder: {
+      id: "12",
+      createdAt: "2019-02-08T08:12:13.908Z",
+      serviceName: "Conserto de vazamento",
+      status: "",
+      quotes: [
+        {
+          id: "12",
+          orderId: "12",
+          name: "Montana",
+          avatar:
+            "https://s3.amazonaws.com/uifaces/faces/twitter/2fockus/128.jpg",
+          price: "973.00",
+          stars: 4.6,
+          ratings: 61,
+          servicesDone: 51,
+          hired: false
+        },
+        {
+          id: "27",
+          orderId: "12",
+          name: "Zola",
+          avatar:
+            "https://s3.amazonaws.com/uifaces/faces/twitter/_ragzor/128.jpg",
+          price: "61.00",
+          stars: 2.4,
+          ratings: 66,
+          servicesDone: 78,
+          hired: false
+        }
+      ]
+    },
     pedidos: [
       {
         id: "1",
@@ -470,29 +502,23 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <header>
-          <Navbar text="Navbar" />
-        </header>
-        {this.state.selectedOrder ? (
-          <OrderDetail
-            order={this.state.selectedOrder}
-            onSelectOrder={this.handleSelectOrder}
-            filter={this.state.orderListFilter}
-          />
-        ) : (
-          <OrderList
-            onSelectOrder={this.handleSelectOrder}
-            lastFilter={this.state.orderListFilter}
-          />
-        )}
-        <ExtraInforation />
-        <footer>
-          <p>Posted by: Hege Refsnes</p>
-          <p>
-            Contact information:{" "}
-            <a href="mailto:someone@example.com">someone@example.com</a>.
-          </p>
-        </footer>
+        <Navbar text="Navbar" />
+        <main className="main">
+          {this.state.selectedOrder ? (
+            <OrderDetail
+              order={this.state.selectedOrder}
+              onSelectOrder={this.handleSelectOrder}
+              filter={this.state.orderListFilter}
+            />
+          ) : (
+            <OrderList
+              onSelectOrder={this.handleSelectOrder}
+              lastFilter={this.state.orderListFilter}
+            />
+          )}
+          <ExtraInforation />
+        </main>
+        <Footer />
       </React.Fragment>
     );
   }
